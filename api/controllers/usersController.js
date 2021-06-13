@@ -41,4 +41,16 @@ export default class UsersController
             return res.status(400).json(err.message);
         }
     }
+
+    static async users(req, res)
+    {
+        try {
+            
+            const users = await DB.Users.findAll();
+            return res.status(200).json({ users: users});
+            
+        } catch (error) {
+            return res.status(400).json(error.message);
+        }
+    }
 }
