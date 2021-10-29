@@ -29,7 +29,7 @@ export default class UsersController
             const [ hashType, hash ] = req.headers.authorization.toString().split(' ');
             
             const [ email, password ] = Buffer.from(hash, 'base64').toString().split(':');
-
+            
             const encryptPassword = crypto.createHash('md5').update(password).digest('hex');
 
             const user = await DB.Users.findOne({ where: { email: email, password: encryptPassword } });
